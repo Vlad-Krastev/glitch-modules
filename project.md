@@ -4,7 +4,7 @@ Hardened, reusable Terraform modules for Glitch workloads on GCP (`cloud-run-ser
 `secret`, `artifact-repo`, `firestore`, …). Secure defaults: CMEK via Autokey, no public access,
 labels, deletion protection in prod, hard `max_instances` on anything that autoscales.
 
-Consumed by workload repos pinned to a Git tag: `source = "git::https://github.com/LiquIDMeowz/glitch-modules.git//modules/<name>?ref=vX.Y.Z"`.
+Consumed by workload repos pinned to a Git tag: `source = "git::https://github.com/Vlad-Krastev/glitch-modules.git//modules/<name>?ref=vX.Y.Z"`.
 
 ## Conventions
 
