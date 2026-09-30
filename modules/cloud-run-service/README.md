@@ -5,7 +5,8 @@ Cloud Run (v2) service with the Glitch baseline:
 - **Hard `max_instances`** (required, 1–10) and `min_instances = 0`; CPU only during requests.
 - **CMEK via Autokey**, gen2 execution environment, europe-west3 by default.
 - **Dedicated service account** with no roles — grant what the app needs outside the module
-  (`service_account_member` output).
+  (`service_account_member` output) — or pass `service_account_email` to run as an existing account
+  (e.g. a glitch-lz factory `runtime_accounts` entry, which can hold roles a deployer can't grant).
 - **`access`**:
   - `internal` (default) — internal ingress, IAM invoker check, `invokers` get `roles/run.invoker`.
   - `firebase` — ingress all + invoker IAM check disabled, for services behind a Firebase Hosting
