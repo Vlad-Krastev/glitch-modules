@@ -33,3 +33,6 @@ override.tf.json
 .idea/
 *.swp
 .DS_Store
+
+# Reusable modules: the consuming root module owns the provider lock
+modules/**/.terraform.lock.hcl
