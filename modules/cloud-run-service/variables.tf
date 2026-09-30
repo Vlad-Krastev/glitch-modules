@@ -13,6 +13,12 @@ variable "name" {
   }
 }
 
+variable "service_account_email" {
+  description = "Existing service account to run as (e.g. a runtime account from the glitch-lz project factory, which can hold IAM roles a deployer can't grant). Null creates a dedicated role-less one."
+  type        = string
+  default     = null
+}
+
 variable "location" {
   description = "Region (org policy: europe-west3, or another EU region with the location=eu tag)."
   type        = string

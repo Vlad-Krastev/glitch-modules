@@ -10,10 +10,10 @@ output "uri" {
 
 output "service_account" {
   description = "Email of the service's dedicated service account."
-  value       = google_service_account.this.email
+  value       = local.service_account
 }
 
 output "service_account_member" {
   description = "IAM member string of the service account (serviceAccount:...)."
-  value       = google_service_account.this.member
+  value       = "serviceAccount:${local.service_account}"
 }

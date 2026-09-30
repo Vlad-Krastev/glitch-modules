@@ -1,9 +1,13 @@
 locals {
-  firebase = var.access == "firebase"
+  firebase        = var.access == "firebase"
+  service_account = var.service_account_email != null ? var.service_account_email : google_service_account.this[0].email
 }
 
-# Dedicated identity with no roles: grant what the app needs outside the module.
+# Dedicated identity with no roles, unless an existing one is passed in: grant what the app needs
+# outside the module.
 resource "google_service_account" "this" {
+  count = var.service_account_email == null ? 1 : 0
+
   project      = var.project_id
   account_id   = var.name
   display_name = "Cloud Run service ${var.name}"
@@ -30,7 +34,7 @@ resource "google_cloud_run_v2_service" "this" {
   invoker_iam_disabled = local.firebase
 
   template {
-    service_account                  = google_service_account.this.email
+    service_account                  = local.service_account
     encryption_key                   = google_kms_key_handle.this.kms_key
     execution_environment            = "EXECUTION_ENVIRONMENT_GEN2"
     max_instance_request_concurrency = var.concurrency
